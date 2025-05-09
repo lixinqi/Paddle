@@ -12,22 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from contextlib import contextmanager
 
-import paddle
-
-__all__ = ['by_register', 'horizontal_component']
-
-
-@contextmanager
-def by_register():
-    paddle._C_ops.ap_trivial_fusion_begin(None)
-    yield
-    paddle._C_ops.ap_trivial_fusion_end(None)
-
-
-@contextmanager
-def horizontal_component():
-    paddle._C_ops.ap_trivial_fusion_begin(None)
-    yield
-    paddle._C_ops.ap_trivial_fusion_end(None)
+def GetGroupedTrivialOpNames():
+    return [
+        "pd_op.sin",
+        "pd_op.add",
+        "pd_op.relu",
+    ]
