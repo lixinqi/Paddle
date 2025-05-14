@@ -135,7 +135,8 @@ class InputSpecMakeCtx:
 
 @contextmanager
 def _ap_envs(ap_path, ap_workspace_dir):
-    ap_sys_path = f"{os.path.dirname(paddle.__file__)}/apy/sys"
+    dirname = os.path.dirname(paddle.__file__)
+    ap_sys_path = f"{dirname}/apy/sys:{dirname}/apy/pass"
     old_ap_path = os.environ.get('AP_PATH')
     old_ap_workspace_dir = os.environ.get('AP_WORKSPACE_DIR')
     os.environ['AP_PATH'] = (
